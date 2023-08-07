@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}My to do!{% endblock %}
+{% block body %}
+
+{% for message in app.flashes('notice') %}
+   <div class="alert alert-success">
+    {{ message }}
+   </div>
+{% endfor %}
+
+
+
+
+<h2 class="page-header"> My Weekly Tasks </h2>
+   <table class="table table-striped">
+       <thead>
+           <tr>
+               <th>#</th>
+               <th>Tasks</th>
+               <th>Created</th>
+                <th>Finish till</th>
+               <th></th>
+           </tr>
+       </thead>
+       <tbody>
+          {% for todo in todos %} {# making a loop in twig inside the variable todos #}
+           <tbody>
+               <tr>
+                   <th scope="row">{{todo.id}}</th> 
+                   <td>{{todo.task}}</td>
+                   <td>{{todo.createDate|date("m.d.y")}}</td> 
+                   <td>{{todo.deadline|date("m.d.y")}}</td> 
+                   <td> <a href="/details/{{todo.id}}" class="btn btn-success">Details</a> {# a tag to go to the path /details/{{todo.id}} so we send the id of the record with the path (like when we are using get method ) #}   
+                       <a href="/edit/{{todo.id}}" class="btn btn-default">Edit</a>
+                       <a href="/delete/{{todo.id}}" class="btn btn-danger">Delete</a>        
+                   </td>
+               </tr> 
+           {% endfor %}
+       </tbody>
+   </table>
+{% endblock %}

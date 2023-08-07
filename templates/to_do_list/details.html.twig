@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+   <hr>
+   <h2 class="page-header">{{todo.task}}</h2>
+   <ul class="list-group">
+       <li class="list-group-item">Priority: {{todo.priority}}</li>
+       <li class="list-group-item">Finish till: <strong> {{todo.deadline|date('F j, Y, g:i a')}} </strong> </li>
+   </ul>
+   <p>
+       {{todo.description}}
+   </p><br>
+   <a class="btn btn-info" href="/">Back</a>
+{% endblock %}
